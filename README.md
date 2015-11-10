@@ -1,6 +1,8 @@
 # react-native-metro-grid
 metro UI grid for react-native
 
+if you want use it more Intelligently, you should pretreat the images by Native methods. Just reload the json data by caculating width and height of the image.
+
 ## Installation
 
 ```
@@ -55,7 +57,7 @@ var AwesomeProject = React.createClass({
 
 ## Demo
 
-![Demo]
+![Demo](https://raw.githubusercontent.com/ZackLeonardo/react-native-metro-grid/master/metroUI.gif)
 
 ## Example
 

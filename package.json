@@ -1,0 +1,31 @@
+{
+  "name": "react-native-metro-grid",
+  "version": "1.0.0",
+  "description": "sample metroUI for react-native.",
+  "main": "metro.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://ZackLeonardo@github.com/ZackLeonardo/react-native-metro-grid.git"
+  },
+  "keywords": [
+    "react-component",
+    "react-native",
+    "ios",
+    "metro",
+    "metroUI",
+    "win8 style",
+    "grid"
+  ],
+  "author": "zoudeyi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ZackLeonardo/react-native-metro-grid/issues"
+  },
+  "homepage": "https://github.com/ZackLeonardo/react-native-metro-grid#readme",
+  "peerDependencies": {
+    "react-native": ">=0.11.0"
+  }
+}
