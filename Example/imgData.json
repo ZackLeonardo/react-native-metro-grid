@@ -1,9 +1,20 @@
 {
   "rowItems": [
     {
+      "type": 1,
       "row": ["cdr"],
     },{
+      "type": 11,
       "row": ["one", "two"],
+    },{
+      "type": 12,
+      "row": ["fourZero","one", "two"],
+    },{
+      "type": 22,
+      "row": ["fourZero", "fourZero"],
+    },{
+      "type": 21,
+      "row": ["one", "two","fourZero"],
     }
   ],
 

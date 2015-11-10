@@ -14,8 +14,6 @@ var {
 } = React;
 
 var imgData = require('./imgData.json');
-var ListCellRow1 = require('./listCellRow1');
-var ListCellRow2 = require('./listCellRow2');
 var ListCellRow = require('./listCellRow');
 
 var AwesomeProject = React.createClass({
@@ -57,7 +55,7 @@ var AwesomeProject = React.createClass({
   ) {
     return (
       <ListCellRow
-        rowNum={listItem.row.length}
+        item={listItem}
       />
     );
   },

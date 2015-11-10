@@ -7,36 +7,117 @@ var {
   StyleSheet,
   View,
   Text,
+  Dimensions,
 } = React;
+
+var winWidth = Dimensions.get('window').width;
+var imgHeight = 150;
+
+var img1Styles = {
+  width: winWidth - 20,
+  height: imgHeight,
+  borderWidth: 2,
+};
+
+var img11Styles = {
+  width: (winWidth - 20)/2,
+  height: imgHeight,
+  borderWidth: 2,
+};
+
+var img2Styles = {
+  width: (winWidth - 20)/2,
+  height: imgHeight * 2,
+  borderWidth: 2,
+};
 
 var listCellRow = React.createClass({
   render: function () {
-    if (this.props.rowNum == 1){
+    switch(this.props.item.type)
+    {
+    case 1:
       return (
-        <View style={styles.listCell}>
+        <View style={styles.listCellR}>
           <Image
-            style={styles.image}
-            source={{uri: 'cdr'}}
+            style={img1Styles}
+            source={{uri: this.props.item.row[0]}}
             />
         </View>
       );
-    }else if (this.props.rowNum == 2) {
+      break;
+    case 11:
       return (
-        <View style={styles.listCell}>
+        <View style={styles.listCellR}>
           <Image
-            style={styles.image}
-            source={{uri: 'one'}}
+            style={img11Styles}
+            source={{uri: this.props.item.row[0]}}
             />
           <Image
-            style={styles.image}
-            source={{uri: 'two'}}
+            style={img11Styles}
+            source={{uri: this.props.item.row[1]}}
+            />
+        </View>
+      );
+      break;
+    case 22:
+      return (
+        <View style={styles.listCellR}>
+          <Image
+            style={img2Styles}
+            source={{uri: this.props.item.row[0]}}
+            />
+          <Image
+            style={img2Styles}
+            source={{uri: this.props.item.row[1]}}
+            />
+        </View>
+      );
+      break;
+    case 12:
+      return (
+        <View style={styles.listCellR}>
+          <Image
+            style={img2Styles}
+            source={{uri: this.props.item.row[0]}}
+            />
+          <View style={styles.listCellC}>
+            <Image
+              style={img11Styles}
+              source={{uri: this.props.item.row[1]}}
+              />
+            <Image
+              style={img11Styles}
+              source={{uri: this.props.item.row[2]}}
+              />
+          </View>
+        </View>
+
+      );
+      break;
+    case 21:
+      return (
+        <View style={styles.listCellR}>
+          <View style={styles.listCellC}>
+            <Image
+              style={img11Styles}
+              source={{uri: this.props.item.row[0]}}
+              />
+            <Image
+              style={img11Styles}
+              source={{uri: this.props.item.row[1]}}
+              />
+          </View>
+          <Image
+            style={img2Styles}
+            source={{uri: this.props.item.row[2]}}
             />
         </View>
 
       );
-    }else{
+      break;
+    default:
       return (
-        <View style={styles.listCell}>
+        <View style={styles.listCellR}>
           <Text>this is something wrong</Text>
         </View>
       );
@@ -46,11 +127,16 @@ var listCellRow = React.createClass({
 });
 
 var styles = StyleSheet.create({
-  listCell: {
-    flex: 1,
+  listCellR: {
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'stretch',
     flexDirection: 'row',
+    backgroundColor: '#F5FCFF',
+  },
+  listCellC: {
+    justifyContent: 'center',
+    alignItems: 'stretch',
+    flexDirection: 'column',
     backgroundColor: '#F5FCFF',
   },
   image: {
