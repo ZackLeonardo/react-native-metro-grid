@@ -18,7 +18,6 @@ var ListCellRow = require('./listCellRow');
 
 var AwesomeProject = React.createClass({
   getInitialState: function() {
-    // alert("getInitialState");
     this.state = {
       dataSource: new ListView.DataSource({
         rowHasChanged: (row1, row2) => row1 !== row2,
@@ -55,6 +54,7 @@ var AwesomeProject = React.createClass({
   ) {
     return (
       <ListCellRow
+        imgHeight={150}
         item={listItem}
       />
     );
@@ -73,22 +73,11 @@ var styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-
   list: {
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
-    marginLeft: 10,
+    marginTop: 30,
   },
   item: {
       margin: 10,

@@ -8,30 +8,67 @@ var {
   View,
   Text,
   Dimensions,
+  PropTypes,
 } = React;
 
 var winWidth = Dimensions.get('window').width;
-var imgHeight = 150;
+// var imgHeight = 150;
 
-var img1Styles = {
-  width: winWidth - 20,
-  height: imgHeight,
-  borderWidth: 2,
-};
-
-var img11Styles = {
-  width: (winWidth - 20)/2,
-  height: imgHeight,
-  borderWidth: 2,
-};
-
-var img2Styles = {
-  width: (winWidth - 20)/2,
-  height: imgHeight * 2,
-  borderWidth: 2,
-};
+// var img1Styles = {
+//   width: winWidth - 20,
+//   height: this.props.imgHeight,
+//   borderWidth: 2,
+// };
+//
+// var img11Styles = {
+//   width: (winWidth - 20)/2,
+//   height: this.props.imgHeight,
+//   borderWidth: 2,
+// };
+//
+// var img2Styles = {
+//   width: (winWidth - 20)/2,
+//   height: this.props.imgHeight * 2,
+//   borderWidth: 2,
+// };
 
 var listCellRow = React.createClass({
+  propTypes: {
+    imgHeight:    PropTypes.number,
+    item:         PropTypes.object,
+  },
+
+  getDefaultProps: function() {
+    return {
+      imgHeight: 150,
+    };
+  },
+
+  getInitialState: function() {
+    this.state = {
+      img1Styles: {},
+      img11Styles: {},
+      img2Styles: {},
+    };
+    return {
+      img1Styles : {
+        width: winWidth - 20,
+        height: this.props.imgHeight,
+        borderWidth: 1,
+      },
+      img11Styles : {
+        width: (winWidth - 20)/2,
+        height: this.props.imgHeight,
+        borderWidth: 1,
+      },
+      img2Styles: {
+        width: (winWidth - 20)/2,
+        height: this.props.imgHeight * 2,
+        borderWidth: 1,
+      },
+    };
+  },
+
   render: function () {
     switch(this.props.item.type)
     {
@@ -39,9 +76,9 @@ var listCellRow = React.createClass({
       return (
         <View style={styles.listCellR}>
           <Image
-            style={img1Styles}
+            style={this.state.img1Styles}
             source={{uri: this.props.item.row[0]}}
-            />
+          />
         </View>
       );
       break;
@@ -49,11 +86,11 @@ var listCellRow = React.createClass({
       return (
         <View style={styles.listCellR}>
           <Image
-            style={img11Styles}
+            style={this.state.img11Styles}
             source={{uri: this.props.item.row[0]}}
             />
           <Image
-            style={img11Styles}
+            style={this.state.img11Styles}
             source={{uri: this.props.item.row[1]}}
             />
         </View>
@@ -63,11 +100,11 @@ var listCellRow = React.createClass({
       return (
         <View style={styles.listCellR}>
           <Image
-            style={img2Styles}
+            style={this.state.img2Styles}
             source={{uri: this.props.item.row[0]}}
             />
           <Image
-            style={img2Styles}
+            style={this.state.img2Styles}
             source={{uri: this.props.item.row[1]}}
             />
         </View>
@@ -77,16 +114,16 @@ var listCellRow = React.createClass({
       return (
         <View style={styles.listCellR}>
           <Image
-            style={img2Styles}
+            style={this.state.img2Styles}
             source={{uri: this.props.item.row[0]}}
             />
           <View style={styles.listCellC}>
             <Image
-              style={img11Styles}
+              style={this.state.img11Styles}
               source={{uri: this.props.item.row[1]}}
               />
             <Image
-              style={img11Styles}
+              style={this.state.img11Styles}
               source={{uri: this.props.item.row[2]}}
               />
           </View>
@@ -99,16 +136,16 @@ var listCellRow = React.createClass({
         <View style={styles.listCellR}>
           <View style={styles.listCellC}>
             <Image
-              style={img11Styles}
+              style={this.state.img11Styles}
               source={{uri: this.props.item.row[0]}}
               />
             <Image
-              style={img11Styles}
+              style={this.state.img11Styles}
               source={{uri: this.props.item.row[1]}}
               />
           </View>
           <Image
-            style={img2Styles}
+            style={this.state.img2Styles}
             source={{uri: this.props.item.row[2]}}
             />
         </View>
