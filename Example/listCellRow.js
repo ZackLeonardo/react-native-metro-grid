@@ -9,28 +9,15 @@ var {
   Text,
   Dimensions,
   PropTypes,
+  TouchableHighlight,
+  TouchableNativeFeedback,
+  Platform,
+  NavigatorIOS,
 } = React;
 
-var winWidth = Dimensions.get('window').width;
-// var imgHeight = 150;
+var imageInfo = require('./cellInfo');
 
-// var img1Styles = {
-//   width: winWidth - 20,
-//   height: this.props.imgHeight,
-//   borderWidth: 2,
-// };
-//
-// var img11Styles = {
-//   width: (winWidth - 20)/2,
-//   height: this.props.imgHeight,
-//   borderWidth: 2,
-// };
-//
-// var img2Styles = {
-//   width: (winWidth - 20)/2,
-//   height: this.props.imgHeight * 2,
-//   borderWidth: 2,
-// };
+var winWidth = Dimensions.get('window').width;
 
 var listCellRow = React.createClass({
   propTypes: {
@@ -70,62 +57,99 @@ var listCellRow = React.createClass({
   },
 
   render: function () {
+    var TouchableElement = TouchableHighlight;
+    if (Platform.OS === 'android') {
+      TouchableElement = TouchableNativeFeedback;
+    };
+
     switch(this.props.item.type)
     {
     case 1:
       return (
         <View style={styles.listCellR}>
-          <Image
-            style={this.state.img1Styles}
-            source={{uri: this.props.item.row[0]}}
-          />
+          <TouchableElement
+            onPress={()=> this.selectImg(this.props.item.row[0])}
+            >
+            <Image
+              style={this.state.img1Styles}
+              source={{uri: this.props.item.row[0]}}
+            />
+          </TouchableElement>
         </View>
       );
       break;
     case 11:
       return (
         <View style={styles.listCellR}>
-          <Image
-            style={this.state.img11Styles}
-            source={{uri: this.props.item.row[0]}}
-            />
-          <Image
-            style={this.state.img11Styles}
-            source={{uri: this.props.item.row[1]}}
-            />
+          <TouchableElement
+            onPress={()=> this.selectImg(this.props.item.row[0])}
+            >
+            <Image
+              style={this.state.img11Styles}
+              source={{uri: this.props.item.row[0]}}
+              />
+          </TouchableElement>
+          <TouchableElement
+            onPress={()=> this.selectImg(this.props.item.row[1])}
+            >
+            <Image
+              style={this.state.img11Styles}
+              source={{uri: this.props.item.row[1]}}
+              />
+          </TouchableElement>
         </View>
       );
       break;
     case 22:
       return (
         <View style={styles.listCellR}>
-          <Image
-            style={this.state.img2Styles}
-            source={{uri: this.props.item.row[0]}}
-            />
-          <Image
-            style={this.state.img2Styles}
-            source={{uri: this.props.item.row[1]}}
-            />
+          <TouchableElement
+            onPress={()=> this.selectImg(this.props.item.row[0])}
+            >
+            <Image
+              style={this.state.img2Styles}
+              source={{uri: this.props.item.row[0]}}
+              />
+          </TouchableElement>
+          <TouchableElement
+            onPress={()=> this.selectImg(this.props.item.row[1])}
+            >
+            <Image
+              style={this.state.img2Styles}
+              source={{uri: this.props.item.row[1]}}
+              />
+          </TouchableElement>
         </View>
       );
       break;
     case 12:
       return (
         <View style={styles.listCellR}>
+          <TouchableElement
+            onPress={()=> this.selectImg(this.props.item.row[0])}
+            >
           <Image
             style={this.state.img2Styles}
             source={{uri: this.props.item.row[0]}}
             />
+          </TouchableElement>
           <View style={styles.listCellC}>
-            <Image
-              style={this.state.img11Styles}
-              source={{uri: this.props.item.row[1]}}
-              />
-            <Image
-              style={this.state.img11Styles}
-              source={{uri: this.props.item.row[2]}}
-              />
+            <TouchableElement
+              onPress={()=> this.selectImg(this.props.item.row[1])}
+              >
+              <Image
+                style={this.state.img11Styles}
+                source={{uri: this.props.item.row[1]}}
+                />
+            </TouchableElement>
+            <TouchableElement
+              onPress={()=> this.selectImg(this.props.item.row[2])}
+              >
+              <Image
+                style={this.state.img11Styles}
+                source={{uri: this.props.item.row[2]}}
+                />
+            </TouchableElement>
           </View>
         </View>
 
@@ -135,19 +159,31 @@ var listCellRow = React.createClass({
       return (
         <View style={styles.listCellR}>
           <View style={styles.listCellC}>
-            <Image
-              style={this.state.img11Styles}
-              source={{uri: this.props.item.row[0]}}
-              />
-            <Image
-              style={this.state.img11Styles}
-              source={{uri: this.props.item.row[1]}}
-              />
+            <TouchableElement
+              onPress={()=> this.selectImg(this.props.item.row[0])}
+              >
+              <Image
+                style={this.state.img11Styles}
+                source={{uri: this.props.item.row[0]}}
+                />
+            </TouchableElement>
+            <TouchableElement
+              onPress={()=> this.selectImg(this.props.item.row[1])}
+              >
+              <Image
+                style={this.state.img11Styles}
+                source={{uri: this.props.item.row[1]}}
+                />
+            </TouchableElement>
           </View>
-          <Image
-            style={this.state.img2Styles}
-            source={{uri: this.props.item.row[2]}}
-            />
+          <TouchableElement
+            onPress={()=> this.selectImg(this.props.item.row[2])}
+            >
+            <Image
+              style={this.state.img2Styles}
+              source={{uri: this.props.item.row[2]}}
+              />
+          </TouchableElement>
         </View>
 
       );
@@ -155,11 +191,20 @@ var listCellRow = React.createClass({
     default:
       return (
         <View style={styles.listCellR}>
-          <Text>this is something wrong</Text>
+          <Text>There is something wrong!</Text>
         </View>
       );
     }
 
+  },
+
+  selectImg: function (image: Object) {
+    // alert(image + " is selected.");
+    this.props.navigator.push({
+      title: '',
+      component: imageInfo,
+      passProps: {image},
+    });
   },
 });
 

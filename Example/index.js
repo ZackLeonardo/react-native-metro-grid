@@ -1,6 +1,6 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
+ * Sample React Native metroUI App
+ *
  */
 'use strict';
 
@@ -11,62 +11,43 @@ var {
   Text,
   View,
   ListView,
+  NavigatorIOS,
 } = React;
 
 var imgData = require('./imgData.json');
-var ListCellRow = require('./listCellRow');
+var Metro = require('./metro');
 
-var AwesomeProject = React.createClass({
-  getInitialState: function() {
-    this.state = {
-      dataSource: new ListView.DataSource({
-        rowHasChanged: (row1, row2) => row1 !== row2,
-      }),
-    };
-    return {
-      dataSource: this.getDataSource(imgData.rowItems),
-    };
-  },
-
-  // componentWillMount: function () {
-  //   alert("componentWillMount");
-  // },
-
-  render: function() {
-    var content = <ListView
-      contentContainerStyle={styles.list}
-      ref="listview"
-      dataSource={this.state.dataSource}
-      renderRow={this.renderRow}
-    />;
+var metroUI = React.createClass({
+  render: function () {
     return (
-      <View style={styles.container}>
-        {content}
-      </View>
+      <Metro
+        data={imgData.rowItems}
+        navigator={this.props.navigator}
+        />
     );
-  },
-
-  renderRow: function (
-    listItem: Object,
-    sectionID: number | string,
-    rowID: number | string,
-    highlightRowFunc: (sectionID: ?number | string, rowID: ?number | string) => void,
-  ) {
-    return (
-      <ListCellRow
-        imgHeight={150}
-        item={listItem}
-      />
-    );
-  },
-
-  getDataSource: function(items: Array<any>): ListView.DataSource {
-    return this.state.dataSource.cloneWithRows(items);
   },
 
 });
 
+var AwesomeProject = React.createClass({
+  render: function () {
+    return (
+      <NavigatorIOS
+        style={styles.navigator}
+        navigationBarHidden={true}
+        initialRoute={{
+          title: '',
+          component: metroUI,
+        }}
+      />
+    );
+  }
+});
+
 var styles = StyleSheet.create({
+  navigator: {
+    flex: 1,
+  },
   container: {
     flex: 1,
     justifyContent: 'center',
