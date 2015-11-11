@@ -52,10 +52,10 @@ var metroUI = React.createClass({
       <Metro
         data={imgData.rowItems}
         navigator={this.props.navigator}
+        transStyle={"navigator"}
         />
     );
   },
-
 });
 
 ```
@@ -80,6 +80,14 @@ var AwesomeProject = React.createClass({
   }
 });
 ```
+
+## Properties
+
+| Prop | Type | Description |
+|---|---|---|
+|**`data`**|`object`| Data can be loaded from json data file. But the json data has specific format, which can be seen in Usage part.|
+|**`navigator`**|`object`| This is an optional one. If transStyle is set as "modal", this prop can be unchosen.|
+|**`transStyle`**|`string`| There are two options can be chosen. "modal" or "navigator". The modal one means the pages switch in modal method, navigator means NavigatorIOS method.|
 
 ## Demo
 
