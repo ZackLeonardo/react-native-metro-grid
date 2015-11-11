@@ -99,4 +99,4 @@ Check full example in the `Example` folder.
 
 ## License
 
-[MIT License](http://opensource.org/licenses/mit-license.html). © Joel Arvidsson
+[MIT License](http://opensource.org/licenses/mit-license.html). © Zou Deyi
