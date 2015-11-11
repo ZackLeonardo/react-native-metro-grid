@@ -3,6 +3,7 @@
 var React = require('react-native');
 
 var {
+  Modal,
   Image,
   Text,
   StyleSheet,
@@ -21,26 +22,33 @@ var imageStyle = {
   resizeMode: 'contain',
 };
 
-var cellInfo = React.createClass({
+var cellModalInfo = React.createClass({
   render: function(){
     var TouchableElement = TouchableHighlight;
     if (Platform.OS === 'android') {
       TouchableElement = TouchableNativeFeedback;
     };
+    var modalBackgroundStyle = {
+      backgroundColor: this.props.transparent ? 'rgba(0, 0, 0, 0.5)' : '#f5fcff',
+    };
+    var innerContainerTransparentStyle = this.props.transparent
+      ? {backgroundColor: '#fff', padding: 20}
+      : null;
     return (
-      <View style={styles.container}>
-        <TouchableElement
-          onPress={()=> this.close()}
-          >
-          <Image style={imageStyle} source={{uri:this.props.image}}/>
-        </TouchableElement>
-      </View>
+        <Modal
+          animated={this.props.animated}
+          transparent={this.props.transparent}
+          visible={this.props.modalVisible}>
+          <View style={[styles.container, modalBackgroundStyle]}>
+            <TouchableElement
+              onPress={this.props.onPress}
+              >
+              <Image style={imageStyle} source={{uri:this.props.image}}/>
+            </TouchableElement>
+          </View>
+        </Modal>
     );
   },
-
-  close: function () {
-    this.props.navigator.pop();
-  }
 });
 
 var styles = StyleSheet.create({
@@ -64,4 +72,4 @@ var styles = StyleSheet.create({
 
 });
 
-module.exports = cellInfo;
+module.exports = cellModalInfo;

@@ -52,6 +52,7 @@ var metro = React.createClass({
         imgHeight={150}
         item={listItem}
         navigator={this.props.navigator}
+        transStyle={this.props.transStyle}
       />
     );
   },
