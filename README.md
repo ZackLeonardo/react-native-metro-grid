@@ -16,6 +16,32 @@ npm install --save react-native-metro-grid
 example: see github Example.
 https://github.com/ZackLeonardo/react-native-metro-grid/tree/master/Example
 
+pay attention: this module is closely associated with the props json data.
+for example:
+```js
+{
+  "rowItems": [
+    {
+      "type": 1,
+      "row": ["cdr"],
+    },{
+      "type": 11,
+      "row": ["one", "two"],
+    },{
+      "type": 12,
+      "row": ["fourZero",["one", "two"]],
+    },{
+      "type": 22,
+      "row": ["fourZero", "fourZero"],
+    },{
+      "type": 21,
+      "row": [["one", "two"],"fourZero"],
+    }
+  ],
+}
+
+```
+
 ```js
 var imgData = require('./imgData.json');
 var Metro = require('react-native-metro-grid');

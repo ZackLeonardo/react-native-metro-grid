@@ -1,6 +1,6 @@
 {
   "name": "react-native-metro-grid",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "sample metroUI for react-native.",
   "main": "metro.js",
   "scripts": {
