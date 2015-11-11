@@ -8,13 +8,13 @@
       "row": ["one", "two"],
     },{
       "type": 12,
-      "row": ["fourZero","one", "two"],
+      "row": ["fourZero",["one", "two"]],
     },{
       "type": 22,
       "row": ["fourZero", "fourZero"],
     },{
       "type": 21,
-      "row": ["one", "two","fourZero"],
+      "row": [["one", "two"],"fourZero"],
     }
   ],
 

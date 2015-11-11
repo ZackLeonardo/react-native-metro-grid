@@ -16,6 +16,7 @@ var {
 } = React;
 
 var imageInfo = require('./cellInfo');
+var ImgItem = require('./imgItem');
 
 var winWidth = Dimensions.get('window').width;
 
@@ -67,89 +68,65 @@ var listCellRow = React.createClass({
     case 1:
       return (
         <View style={styles.listCellR}>
-          <TouchableElement
+          <ImgItem
             onPress={()=> this.selectImg(this.props.item.row[0])}
-            >
-            <Image
-              style={this.state.img1Styles}
-              source={{uri: this.props.item.row[0]}}
+            style={this.state.img1Styles}
+            image={this.props.item.row[0]}
             />
-          </TouchableElement>
         </View>
       );
       break;
     case 11:
       return (
         <View style={styles.listCellR}>
-          <TouchableElement
-            onPress={()=> this.selectImg(this.props.item.row[0])}
-            >
-            <Image
-              style={this.state.img11Styles}
-              source={{uri: this.props.item.row[0]}}
-              />
-          </TouchableElement>
-          <TouchableElement
-            onPress={()=> this.selectImg(this.props.item.row[1])}
-            >
-            <Image
-              style={this.state.img11Styles}
-              source={{uri: this.props.item.row[1]}}
-              />
-          </TouchableElement>
+          {
+            this.props.item.row.map((item) => {
+              return (
+                <ImgItem
+                  onPress={()=> this.selectImg(item)}
+                  style={this.state.img11Styles}              image={item}
+                  />
+              );
+            })
+          }
         </View>
       );
       break;
     case 22:
       return (
         <View style={styles.listCellR}>
-          <TouchableElement
-            onPress={()=> this.selectImg(this.props.item.row[0])}
-            >
-            <Image
-              style={this.state.img2Styles}
-              source={{uri: this.props.item.row[0]}}
-              />
-          </TouchableElement>
-          <TouchableElement
-            onPress={()=> this.selectImg(this.props.item.row[1])}
-            >
-            <Image
-              style={this.state.img2Styles}
-              source={{uri: this.props.item.row[1]}}
-              />
-          </TouchableElement>
+          {
+            this.props.item.row.map((item) => {
+              return (
+                <ImgItem
+                  onPress={()=> this.selectImg(item)}
+                  style={this.state.img2Styles}              image={item}
+                  />
+              );
+            })
+          }
         </View>
       );
       break;
     case 12:
       return (
         <View style={styles.listCellR}>
-          <TouchableElement
+          <ImgItem
             onPress={()=> this.selectImg(this.props.item.row[0])}
-            >
-          <Image
             style={this.state.img2Styles}
-            source={{uri: this.props.item.row[0]}}
+            image={this.props.item.row[0]}
             />
-          </TouchableElement>
           <View style={styles.listCellC}>
-            <TouchableElement
-              onPress={()=> this.selectImg(this.props.item.row[1])}
-              >
-              <Image
-                style={this.state.img11Styles}
-                source={{uri: this.props.item.row[1]}}
-                />
-            </TouchableElement>
-            <TouchableElement
-              onPress={()=> this.selectImg(this.props.item.row[2])}
-              >
-              <Image
-                style={this.state.img11Styles}
-                source={{uri: this.props.item.row[2]}}
-                />
-            </TouchableElement>
+            {
+              this.props.item.row[1].map((item) => {
+                return (
+                  <ImgItem
+                    onPress={()=> this.selectImg(item)}
+                    style={this.state.img11Styles}              image={item}
+                    />
+                );
+              })
+            }
           </View>
         </View>
 
@@ -159,31 +136,22 @@ var listCellRow = React.createClass({
       return (
         <View style={styles.listCellR}>
           <View style={styles.listCellC}>
-            <TouchableElement
-              onPress={()=> this.selectImg(this.props.item.row[0])}
-              >
-              <Image
-                style={this.state.img11Styles}
-                source={{uri: this.props.item.row[0]}}
-                />
-            </TouchableElement>
-            <TouchableElement
-              onPress={()=> this.selectImg(this.props.item.row[1])}
-              >
-              <Image
-                style={this.state.img11Styles}
-                source={{uri: this.props.item.row[1]}}
-                />
-            </TouchableElement>
+            {
+              this.props.item.row[0].map((item) => {
+                return (
+                  <ImgItem
+                    onPress={()=> this.selectImg(item)}
+                    style={this.state.img11Styles}              image={item}
+                    />
+                );
+              })
+            }
           </View>
-          <TouchableElement
-            onPress={()=> this.selectImg(this.props.item.row[2])}
-            >
-            <Image
-              style={this.state.img2Styles}
-              source={{uri: this.props.item.row[2]}}
-              />
-          </TouchableElement>
+          <ImgItem
+            onPress={()=> this.selectImg(this.props.item.row[1])}
+            style={this.state.img2Styles}
+            image={this.props.item.row[1]}
+            />
         </View>
 
       );
