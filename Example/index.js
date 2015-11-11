@@ -15,8 +15,8 @@ var {
 } = React;
 
 var imgData = require('./imgData.json');
-var Metro = require('react-native-metro-grid');
-// var Metro = require('./metro');
+// var Metro = require('react-native-metro-grid');
+var Metro = require('./metro');
 
 var metroUI = React.createClass({
   render: function () {
