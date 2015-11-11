@@ -24,10 +24,10 @@ var metroUI = React.createClass({
       <Metro
         data={imgData.rowItems}
         navigator={this.props.navigator}
+        transStyle={"navigator"}
         />
     );
   },
-
 });
 
 var AwesomeProject = React.createClass({
@@ -37,7 +37,7 @@ var AwesomeProject = React.createClass({
         style={styles.navigator}
         navigationBarHidden={true}
         initialRoute={{
-          title: '',
+          title: 'metroUI',
           component: metroUI,
         }}
       />
@@ -59,7 +59,6 @@ var styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
-    marginTop: 30,
   },
   item: {
       margin: 10,

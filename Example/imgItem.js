@@ -4,23 +4,16 @@ var React = require('react-native');
 
 var {
   Image,
-  StyleSheet,
-  View,
-  Text,
-  Dimensions,
   PropTypes,
   TouchableHighlight,
   TouchableNativeFeedback,
   Platform,
-  NavigatorIOS,
 } = React;
-
-var winWidth = Dimensions.get('window').width;
 
 var imgItem = React.createClass({
   propTypes: {
     style:    PropTypes.object,
-    image:         PropTypes.string,
+    image:    PropTypes.string,
   },
 
   getDefaultProps: function() {
@@ -30,6 +23,7 @@ var imgItem = React.createClass({
         height: 150,
         borderWidth: 1,
       },
+      image: ""
     };
   },
 
@@ -51,6 +45,5 @@ var imgItem = React.createClass({
   },
 
 });
-
 
 module.exports = imgItem;

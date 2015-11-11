@@ -17,6 +17,7 @@ var {
 
 var imageInfo = require('./cellInfo');
 var ImgItem = require('./imgItem');
+var CellModalInfo = require('./cellModalInfo');
 
 var winWidth = Dimensions.get('window').width;
 
@@ -33,11 +34,6 @@ var listCellRow = React.createClass({
   },
 
   getInitialState: function() {
-    this.state = {
-      img1Styles: {},
-      img11Styles: {},
-      img2Styles: {},
-    };
     return {
       img1Styles : {
         width: winWidth - 20,
@@ -54,7 +50,23 @@ var listCellRow = React.createClass({
         height: this.props.imgHeight * 2,
         borderWidth: 1,
       },
+      animated: true,
+      modalVisible: false,
+      transparent: false,
+      modalImg: '',
     };
+  },
+
+  _setModalVisible(visible) {
+    this.setState({modalVisible: visible});
+  },
+
+  _toggleAnimated() {
+    this.setState({animated: !this.state.animated});
+  },
+
+  _toggleTransparent() {
+    this.setState({transparent: !this.state.transparent});
   },
 
   render: function () {
@@ -63,11 +75,23 @@ var listCellRow = React.createClass({
       TouchableElement = TouchableNativeFeedback;
     };
 
+    var content = null;
+    if (this.props.transStyle == "modal"){
+      content = <CellModalInfo
+        transparent={this.state.transparent}
+        animated={this.state.animated}
+        modalVisible={this.state.modalVisible}
+        onPress={this._setModalVisible.bind(this, false)}
+        image={this.state.modalImg}
+        />
+    }
+
     switch(this.props.item.type)
     {
     case 1:
       return (
         <View style={styles.listCellR}>
+          {content}
           <ImgItem
             onPress={()=> this.selectImg(this.props.item.row[0])}
             style={this.state.img1Styles}
@@ -79,12 +103,14 @@ var listCellRow = React.createClass({
     case 11:
       return (
         <View style={styles.listCellR}>
+          {content}
           {
             this.props.item.row.map((item) => {
               return (
                 <ImgItem
                   onPress={()=> this.selectImg(item)}
-                  style={this.state.img11Styles}              image={item}
+                  style={this.state.img11Styles}
+                  image={item}
                   />
               );
             })
@@ -95,12 +121,14 @@ var listCellRow = React.createClass({
     case 22:
       return (
         <View style={styles.listCellR}>
+          {content}
           {
             this.props.item.row.map((item) => {
               return (
                 <ImgItem
                   onPress={()=> this.selectImg(item)}
-                  style={this.state.img2Styles}              image={item}
+                  style={this.state.img2Styles}
+                  image={item}
                   />
               );
             })
@@ -111,6 +139,7 @@ var listCellRow = React.createClass({
     case 12:
       return (
         <View style={styles.listCellR}>
+          {content}
           <ImgItem
             onPress={()=> this.selectImg(this.props.item.row[0])}
             style={this.state.img2Styles}
@@ -122,7 +151,8 @@ var listCellRow = React.createClass({
                 return (
                   <ImgItem
                     onPress={()=> this.selectImg(item)}
-                    style={this.state.img11Styles}              image={item}
+                    style={this.state.img11Styles}
+                    image={item}
                     />
                 );
               })
@@ -136,12 +166,14 @@ var listCellRow = React.createClass({
       return (
         <View style={styles.listCellR}>
           <View style={styles.listCellC}>
+            {content}
             {
               this.props.item.row[0].map((item) => {
                 return (
                   <ImgItem
                     onPress={()=> this.selectImg(item)}
-                    style={this.state.img11Styles}              image={item}
+                    style={this.state.img11Styles}
+                    image={item}
                     />
                 );
               })
@@ -167,12 +199,16 @@ var listCellRow = React.createClass({
   },
 
   selectImg: function (image: Object) {
-    // alert(image + " is selected.");
-    this.props.navigator.push({
-      title: '',
-      component: imageInfo,
-      passProps: {image},
-    });
+    if (this.props.transStyle == "navigator"){
+      this.props.navigator.push({
+        title: image,
+        component: imageInfo,
+        passProps: {image},
+      });
+    }else{
+      this.state.modalImg = image;
+      this._setModalVisible(true);
+    }
   },
 });
 
